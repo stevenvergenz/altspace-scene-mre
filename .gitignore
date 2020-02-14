@@ -1,0 +1,10 @@
+Library
+Logs
+build
+obj
+*.sln
+*.csproj
+Packages
+!Packages/manifest.json
+Temp
+.vs
