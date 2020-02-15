@@ -55,7 +55,6 @@ public class AltspaceBuildWindow : EditorWindow
     public static string MySimpleUnityVersion;
 
     private string tempSceneFile = "";
-    private string tempMreFile = "";
     private string outAssetBundleName = "";
     private string saveLocation = string.Empty;
     private string email = string.Empty;
@@ -1944,7 +1943,6 @@ public class AltspaceBuildWindow : EditorWindow
         }
 
         tempSceneFile = exportDirectory + Path.DirectorySeparatorChar + assetBundleName + ".unity";
-        tempMreFile = exportDirectory + Path.DirectorySeparatorChar + assetBundleName + ".asset";
 
         return true;
     }
@@ -1984,18 +1982,9 @@ public class AltspaceBuildWindow : EditorWindow
     {
         var originalActiveScene = EditorSceneManager.GetActiveScene();
         string originalActiveScenePath = originalActiveScene.path;
-        string originalSceneMre = originalActiveScenePath.Replace(".unity", ".asset");
         EditorSceneManager.SaveScene(originalActiveScene);
         bool success = false;
         success = EditorSceneManager.SaveScene(originalActiveScene, tempSceneFile);
-        if (File.Exists(originalSceneMre))
-        {
-            AssetDatabase.CopyAsset(originalSceneMre, tempMreFile);
-        }
-        else if (File.Exists(tempMreFile))
-        {
-            AssetDatabase.DeleteAsset(tempMreFile);
-        }
 
         if (success)
         {
@@ -2017,7 +2006,7 @@ public class AltspaceBuildWindow : EditorWindow
     {
         if (tempSceneFile.Length != 0)
         {
-            string[] scenes = { tempSceneFile, tempMreFile };
+            string[] scenes = { tempSceneFile };
             AssetBundleBuild[] buildMap = { new AssetBundleBuild() };
 
             
