@@ -17,19 +17,30 @@ class App {
 		this.context.onStarted(() => console.log('started'));
 		this.context.onStopped(() => console.log('stopped'));
 		this.context.onActorCreated(actor => {
+			let updateInteraction = false;
 			switch (actor.name) {
 				case '01_low':
 					this.door = actor;
+					updateInteraction = true;
 					break;
-				case 'Box':
+				case 'GrabCube':
 					this.box = actor;
+					updateInteraction = true;
 					break;
 				case 'Button':
 					this.button = actor;
+					updateInteraction = true;
 					break;
+				case 'AnimCube':
+					setTimeout(() => {
+						console.log(actor.animationsByName);
+						actor.animationsByName.get('Spin').play();
+					}, 100);
+					break;
+				
 			}
 
-			if (this.door && this.box && this.button) {
+			if (updateInteraction && this.door && this.box && this.button) {
 				this.hookTriggers();
 			}
 		});
