@@ -17,7 +17,6 @@ class App {
 		this.context.onStarted(() => console.log('started'));
 		this.context.onStopped(() => console.log('stopped'));
 		this.context.onActorCreated(actor => {
-			console.log(actor.name);
 			switch (actor.name) {
 				case '01_low':
 					this.door = actor;
@@ -39,6 +38,8 @@ class App {
 	private hookTriggers() {
 		this.box.enableRigidBody({ mass: 5 });
 		this.box.grabbable = true;
+		this.box.onGrab('begin', () => this.box.rigidBody.isKinematic = true);
+		this.box.onGrab('end', () => this.box.rigidBody.isKinematic = false);
 
 		this.button.enableRigidBody({
 			isKinematic: true,
@@ -58,6 +59,16 @@ class App {
 	}
 
 	private activateButton() {
-
+		console.log('switch activated');
+		this.button.animateTo(
+			{ transform: { local: { position: this.button.transform.local.position.subtractFromFloats(0, 0.133, 0) } } },
+			0.5,
+			MRE.AnimationEaseCurves.EaseOutQuadratic
+		);
+		this.door.animateTo(
+			{ transform: { local: { rotation: MRE.Quaternion.FromEulerAngles(-Math.PI / 2, 0, -Math.PI / 2) } } },
+			1,
+			MRE.AnimationEaseCurves.EaseInOutQuadratic
+		);
 	}
 }

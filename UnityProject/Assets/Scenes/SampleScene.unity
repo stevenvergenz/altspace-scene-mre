@@ -137,7 +137,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!64 &233047584
 MeshCollider:
@@ -475,8 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e0d392bb661ab49812309633b05559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Uri: ws://localhost:3901
-  NeedsUserData: 0
+  Uri: wss://environmental-mre2.azurewebsites.net
+  NeedsUserData: 1
 --- !u!1 &2067831191
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +655,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7693349101032392914, guid: cb60040219dadd549961b794ea48a5a6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb60040219dadd549961b794ea48a5a6, type: 3}

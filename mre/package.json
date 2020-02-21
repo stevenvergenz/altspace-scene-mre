@@ -2,9 +2,10 @@
   "name": "altspace-scene-mre",
   "version": "1.0.0",
   "description": "",
-  "main": "built\\index.js",
+  "main": "built/index.js",
   "scripts": {
-    "build": "tsc --build"
+	"build": "tsc --build",
+	"start": "node ."
   },
   "author": "",
   "license": "ISC",
